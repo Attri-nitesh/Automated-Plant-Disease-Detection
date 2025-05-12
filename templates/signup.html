@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="https://r.mobirisesite.com/1185465/assets/images/photo-1487700160041-babef9c3cb55.jpeg" type="image/x-icon">
+  <meta name="description" content="Sign up for AI plant disease detection technology.">
+  
+  <title>Sign Up - Plant Disease Detection</title>
+  
+  <!-- Bootstrap CSS files -->
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap-reboot.min.css">
+
+  <!-- Theme CSS (Mobirise main style) -->
+  <link rel="stylesheet" href="/static/assets/theme/css/style.css">
+
+  <!-- Additional Mobirise CSS -->
+  <link rel="stylesheet" href="/static/assets/mobirise/css/mbr-additional.css">
+  
+  <!-- Feather Icons (similar to Lucide used in the React component) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  
+  <!-- Custom Signup Page Styling - reusing login styles -->
+  <style>
+    /* Main container styles */
+    .signup-container {
+      min-height: 100vh;
+      background-image: linear-gradient(to bottom right, #f0f9f0, #e8f5e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Animated plants in background */
+    .bg-plant {
+      position: absolute;
+      transition: all 1s ease-in-out;
+      opacity: 0.4;
+    }
+    
+    .bg-plant:hover {
+      transform: scale(1.2);
+      opacity: 0.6;
+    }
+    
+    /* Signup form container */
+    .signup-form-container {
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .signup-form-content {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      padding: 2rem;
+      transform: translateY(0);
+      transition: all 0.3s ease;
+    }
+    
+    .signup-form-content:hover {
+      transform: scale(1.02);
+    }
+    
+    /* Logo and title */
+    .signup-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .logo-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e8f5e9;
+      border-radius: 50%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .logo-icon {
+      color: #2e7d32;
+      margin: 0 0.25rem;
+    }
+    
+    /* Form controls */
+    .form-group {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #4b5563;
+      margin-bottom: 0.25rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      transition: all 0.2s;
+    }
+    
+    .form-control:focus {
+      border-color: #2e7d32;
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.25);
+      outline: none;
+    }
+    
+    select.form-control {
+      background-color: white;
+      cursor: pointer;
+    }
+    
+    .password-container {
+      position: relative;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #6b7280;
+      cursor: pointer;
+    }
+    
+    .password-toggle:hover {
+      color: #4b5563;
+    }
+    
+    /* Password strength indicator */
+    .password-strength-container {
+      margin-top: 0.5rem;
+    }
+    
+    .password-strength-bar {
+      height: 0.375rem;
+      width: 100%;
+      background-color: #e5e7eb;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    
+    .password-strength-progress {
+      height: 100%;
+      transition: all 0.3s;
+    }
+    
+    .password-strength-text {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 0.25rem;
+    }
+    
+    /* Terms and conditions checkbox */
+    .terms-checkbox {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    
+    .terms-checkbox input {
+      margin-top: 0.2rem;
+      margin-right: 0.5rem;
+      height: 1rem;
+      width: 1rem;
+    }
+    
+    .terms-text {
+      font-size: 0.875rem;
+      color: #4b5563;
+    }
+    
+    .terms-link {
+      color: #2e7d32;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    .terms-link:hover {
+      color: #1b5e20;
+      text-decoration: underline;
+    }
+    
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .submit-btn:not(:disabled):hover {
+      background-color: #1b5e20;
+      transform: translateY(-2px);
+    }
+    
+    .submit-btn:disabled {
+      background-color: #4caf50;
+      cursor: not-allowed;
+    }
+    
+    .spinner {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 2px solid white;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Sign in link */
+    .signin-link {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #4b5563;
+    }
+    
+    .signin-btn {
+      font-weight: 500;
+      color: #2e7d32;
+      text-decoration: none;
+    }
+    
+    .signin-btn:hover {
+      color: #1b5e20;
+      text-decoration: underline;
+    }
+    
+    /* Bottom decoration */
+    .bottom-dots {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      animation: bounce 1.5s infinite;
+    }
+    
+    .dot-1 {
+      background-color: #81c784;
+    }
+    
+    .dot-2 {
+      background-color: #66bb6a;
+      animation-delay: 0.2s;
+    }
+    
+    .dot-3 {
+      background-color: #4caf50;
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-0.5rem); }
+    }
+    
+    /* Animation for plants */
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.05); }
+    }
+    
+    .animate-pulse {
+      animation: pulse 3s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <!-- Animated background plants -->
+    <div class="bg-plant animate-pulse" style="left: 5%; top: 15%;" data-plant-id="1">
+      <i data-feather="activity" width="30" height="30" class="text-success"></i>
+    </div>
+    <div class="bg-plant animate-pulse" style="left: 85%; top: 75%; animation-delay: 1s;" data-plant-id="2">
+      <i data-feather="star" width="25" height="25" class="text-success"></i>
+    </div>
+    <div class="bg-plant animate-pulse" style="left: 25%; top: 60%; animation-delay: 0.5s;" data-plant-id="3">
+      <i data-feather="trending-up" width="35" height="35" class="text-success"></i>
+    </div>
+    <div class="bg-plant animate-pulse" style="left: 65%; top: 20%; animation-delay: 1.5s;" data-plant-id="4">
+      <i data-feather="leaf" width="20" height="20" class="text-success"></i>
+    </div>
+    <div class="bg-plant animate-pulse" style="left: 95%; top: 45%; animation-delay: 0.8s;" data-plant-id="5">
+      <i data-feather="activity" width="28" height="28" class="text-success"></i>
+    </div>
+    <div class="bg-plant animate-pulse" style="left: 45%; top: 80%; animation-delay: 0.3s;" data-plant-id="6">
+      <i data-feather="star" width="22" height="22" class="text-success"></i>
+    </div>
+
+    <!-- Signup form container -->
+    <div class="signup-form-container">
+      <div class="signup-form-content">
+        <!-- Logo and title -->
+        <div class="signup-header">
+          <div class="logo-container">
+            <i data-feather="search" class="logo-icon"></i>
+            <i data-feather="leaf" class="logo-icon"></i>
+            <i data-feather="alert-circle" class="logo-icon"></i>
+          </div>
+          <h1 class="text-dark font-weight-bold mb-2">Join Plant Disease Detection</h1>
+          <p class="text-muted">Start protecting your plants today</p>
+        </div>
+
+        <form id="signup-form" action="/signup" method="POST">
+          <!-- Full name field -->
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              required
+              class="form-control"
+              placeholder="John Doe"
+            >
+          </div>
+          
+          <!-- Email field -->
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              class="form-control"
+              placeholder="name@example.com"
+            >
+          </div>
+          
+          <!-- Role selection -->
+          <div class="form-group">
+            <label for="role">I am a</label>
+            <select
+              id="role"
+              name="role"
+              class="form-control"
+            >
+              <option value="gardener">Home Gardener</option>
+              <option value="farmer">Professional Farmer</option>
+              <option value="researcher">Plant Researcher</option>
+              <option value="enthusiast">Plant Enthusiast</option>
+            </select>
+          </div>
+
+          <!-- Password field -->
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-container">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                class="form-control"
+                placeholder="••••••••"
+              >
+              <button
+                type="button"
+                class="password-toggle"
+                id="password-toggle"
+              >
+                <i data-feather="eye"></i>
+              </button>
+            </div>
+            <!-- Password strength indicator -->
+            <div class="password-strength-container">
+              <div class="password-strength-bar">
+                <div id="password-strength-progress" class="password-strength-progress" style="width: 0%; background-color: #ef4444;"></div>
+              </div>
+              <p id="password-strength-text" class="password-strength-text">Password strength: 0%</p>
+            </div>
+          </div>
+          
+          <!-- Confirm Password field -->
+          <div class="form-group">
+            <label for="confirmPassword">Confirm password</label>
+            <div class="password-container">
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                required
+                class="form-control"
+                placeholder="••••••••"
+              >
+              <button
+                type="button"
+                class="password-toggle"
+                id="confirm-password-toggle"
+              >
+                <i data-feather="eye"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Terms and Conditions -->
+          <div class="terms-checkbox">
+            <input
+              id="terms"
+              name="terms"
+              type="checkbox"
+              required
+            >
+            <label for="terms" class="terms-text">
+              I agree to the <button type="button" class="terms-link">Terms of Service</button> and <button type="button" class="terms-link">Privacy Policy</button>
+            </label>
+          </div>
+
+          <!-- Submit button -->
+          <button
+            type="submit"
+            class="submit-btn"
+            id="submit-btn"
+          >
+            Create Account
+          </button>
+        </form>
+
+        <!-- Sign in link -->
+        <p class="signin-link">
+          Already have an account?
+          <a href="/login" class="signin-btn">Sign in</a>
+        </p>
+      </div>
+
+      <!-- Bottom decoration -->
+      <div class="bottom-dots">
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Initialize Feather icons
+    feather.replace();
+    
+    // Password visibility toggle for password field
+    document.getElementById('password-toggle').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      const icon = this.querySelector('i');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.setAttribute('data-feather', 'eye-off');
+      } else {
+        passwordInput.type = 'password';
+        icon.setAttribute('data-feather', 'eye');
+      }
+      
+      feather.replace();
+    });
+    
+    // Password visibility toggle for confirm password field
+    document.getElementById('confirm-password-toggle').addEventListener('click', function() {
+      const passwordInput = document.getElementById('confirmPassword');
+      const icon = this.querySelector('i');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.setAttribute('data-feather', 'eye-off');
+      } else {
+        passwordInput.type = 'password';
+        icon.setAttribute('data-feather', 'eye');
+      }
+      
+      feather.replace();
+    });
+    
+    // Plant hover effect
+    const plants = document.querySelectorAll('.bg-plant');
+    plants.forEach(plant => {
+      plant.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.2)';
+        this.style.opacity = '0.6';
+        
+        // Change the icon color
+        const icon = this.querySelector('i');
+        icon.classList.remove('text-success');
+        icon.classList.add('text-green-500');
+      });
+      
+      plant.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.opacity = '0.4';
+        
+        // Revert the icon color
+        const icon = this.querySelector('i');
+        icon.classList.add('text-success');
+        icon.classList.remove('text-green-500');
+      });
+    });
+    
+    // Password strength calculator
+    function calculatePasswordStrength(password) {
+      let strength = 0;
+      if (password.length >= 8) strength += 25;
+      if (password.match(/[A-Z]/)) strength += 25;
+      if (password.match(/[0-9]/)) strength += 25;
+      if (password.match(/[^A-Za-z0-9]/)) strength += 25;
+      return strength;
+    }
+    
+    // Update password strength meter
+    function updatePasswordStrength(strength) {
+      const progressBar = document.getElementById('password-strength-progress');
+      const strengthText = document.getElementById('password-strength-text');
+      
+      progressBar.style.width = `${strength}%`;
+      
+      if (strength <= 25) {
+        progressBar.style.backgroundColor = '#ef4444'; // red
+      } else if (strength <= 50) {
+        progressBar.style.backgroundColor = '#f59e0b'; // yellow
+      } else if (strength <= 75) {
+        progressBar.style.backgroundColor = '#4ade80'; // light green
+      } else {
+        progressBar.style.backgroundColor = '#16a34a'; // dark green
+      }
+      
+      strengthText.textContent = `Password strength: ${strength}%`;
+    }
+    
+    // Listen for password input changes
+    document.getElementById('password').addEventListener('input', function(e) {
+      const password = e.target.value;
+      const strength = calculatePasswordStrength(password);
+      updatePasswordStrength(strength);
+    });
+    
+    // Form validation for matching passwords
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      
+      if (password !== confirmPassword) {
+        e.preventDefault();
+        alert('Passwords do not match');
+        return;
+      }
+      
+      // Add spinner to button
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div class="spinner"></div>';
+    });
+  </script>
+</body>
+</html> 

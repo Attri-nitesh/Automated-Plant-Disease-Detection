@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="https://r.mobirisesite.com/1185465/assets/images/photo-1487700160041-babef9c3cb55.jpeg" type="image/x-icon">
+  <meta name="description" content="Sign in to access AI plant disease detection technology.">
+  
+  <title>Login - Plant Disease Detection</title>
+  
+  <!-- Bootstrap CSS files -->
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap-reboot.min.css">
+
+  <!-- Theme CSS (Mobirise main style) -->
+  <link rel="stylesheet" href="/static/assets/theme/css/style.css">
+
+  <!-- Additional Mobirise CSS -->
+  <link rel="stylesheet" href="/static/assets/mobirise/css/mbr-additional.css">
+  
+  <!-- Feather Icons (similar to Lucide used in the React component) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  
+  <!-- Custom Login Page Styling -->
+  <style>
+    /* Main container styles */
+    .login-container {
+      min-height: 100vh;
+      background-image: linear-gradient(to bottom right, #e6f7e6, #e0f0e0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Animated plants in background */
+    .bg-plant {
+      position: absolute;
+      transition: all 1s ease-in-out;
+      opacity: 0.4;
+    }
+    
+    .bg-plant:hover {
+      transform: scale(1.2);
+      opacity: 0.6;
+    }
+    
+    /* Login form container */
+    .login-form-container {
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .login-form-content {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      padding: 2rem;
+      transform: translateY(0);
+      transition: all 0.3s ease;
+    }
+    
+    .login-form-content:hover {
+      transform: scale(1.02);
+    }
+    
+    /* Logo and title */
+    .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .logo-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e6f7e6;
+      border-radius: 50%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .logo-icon {
+      color: #2e7d32;
+      margin: 0 0.25rem;
+    }
+    
+    /* Form controls */
+    .form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #4b5563;
+      margin-bottom: 0.25rem;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      transition: all 0.2s;
+    }
+    
+    .form-control:focus {
+      border-color: #2e7d32;
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.25);
+      outline: none;
+    }
+    
+    .password-container {
+      position: relative;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #6b7280;
+      cursor: pointer;
+    }
+    
+    .password-toggle:hover {
+      color: #4b5563;
+    }
+    
+    /* Remember me and forgot password */
+    .form-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+    
+    .remember-me input {
+      height: 1rem;
+      width: 1rem;
+      margin-right: 0.5rem;
+    }
+    
+    .forgot-password {
+      font-size: 0.875rem;
+      color: #2e7d32;
+      font-weight: 500;
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+    }
+    
+    .forgot-password:hover {
+      color: #1b5e20;
+      text-decoration: underline;
+    }
+    
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .submit-btn:not(:disabled):hover {
+      background-color: #1b5e20;
+      transform: translateY(-2px);
+    }
+    
+    .submit-btn:disabled {
+      background-color: #4caf50;
+      cursor: not-allowed;
+    }
+    
+    .spinner {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 2px solid white;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Sign up link */
+    .signup-link {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #4b5563;
+    }
+    
+    .signup-btn {
+      font-weight: 500;
+      color: #2e7d32;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+    
+    .signup-btn:hover {
+      color: #1b5e20;
+      text-decoration: underline;
+    }
+    
+    /* Bottom decoration */
+    .bottom-dots {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      animation: bounce 1.5s infinite;
+    }
+    
+    .dot-1 {
+      background-color: #81c784;
+    }
+    
+    .dot-2 {
+      background-color: #66bb6a;
+      animation-delay: 0.2s;
+    }
+    
+    .dot-3 {
+      background-color: #4caf50;
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-0.5rem); }
+    }
+    
+    /* Animation for plants */
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.05); }
+    }
+    
+    .animate-pulse {
+      animation: pulse 3s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <!-- Animated background plants -->
+    <div class="bg-plant animate-pulse" style="left: 10%; top: 20%;" data-plant-id="1">
+      <i data-feather="leaf" width="30" height="30" class="text-success"></i>
+    </div>
+    <div class="bg-plant animate-pulse" style="left: 80%; top: 70%; animation-delay: 1s;" data-plant-id="2">
+      <i data-feather="leaf" width="25" height="25" class="text-success"></i>
+    </div>
+    <div class="bg-plant animate-pulse" style="left: 30%; top: 60%; animation-delay: 0.5s;" data-plant-id="3">
+      <i data-feather="leaf" width="35" height="35" class="text-success"></i>
+    </div>
+    <div class="bg-plant animate-pulse" style="left: 60%; top: 30%; animation-delay: 1.5s;" data-plant-id="4">
+      <i data-feather="leaf" width="20" height="20" class="text-success"></i>
+    </div>
+    <div class="bg-plant animate-pulse" style="left: 90%; top: 40%; animation-delay: 0.8s;" data-plant-id="5">
+      <i data-feather="leaf" width="28" height="28" class="text-success"></i>
+    </div>
+
+    <!-- Login form container -->
+    <div class="login-form-container">
+      <div class="login-form-content">
+        <!-- Logo and title -->
+        <div class="login-header">
+          <div class="logo-container">
+            <i data-feather="search" class="logo-icon"></i>
+            <i data-feather="leaf" class="logo-icon"></i>
+            <i data-feather="bug" class="logo-icon"></i>
+          </div>
+          <h1 class="text-dark font-weight-bold mb-2">Plant Disease Detection</h1>
+          <p class="text-muted">Sign in to diagnose plant health</p>
+        </div>
+
+        <form id="login-form" action="/login" method="POST">
+          <!-- Email field -->
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              class="form-control"
+              placeholder="name@example.com"
+            >
+          </div>
+
+          <!-- Password field -->
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-container">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                class="form-control"
+                placeholder="••••••••"
+              >
+              <button
+                type="button"
+                class="password-toggle"
+                id="password-toggle"
+              >
+                <i data-feather="eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember me and forgot password -->
+          <div class="form-options">
+            <div class="remember-me">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+              >
+              <label for="remember-me" class="mb-0">Remember me</label>
+            </div>
+            <button type="button" class="forgot-password">Forgot password?</button>
+          </div>
+
+          <!-- Submit button -->
+          <button
+            type="submit"
+            class="submit-btn"
+            id="submit-btn"
+          >
+            Sign in
+          </button>
+        </form>
+
+        <!-- Sign up link -->
+        <p class="signup-link">
+          Don't have an account?
+          <a href="/signup" class="signup-btn">Sign up now</a>
+        </p>
+      </div>
+
+      <!-- Bottom decoration -->
+      <div class="bottom-dots">
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Initialize Feather icons
+    feather.replace();
+    
+    // Password visibility toggle
+    document.getElementById('password-toggle').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      const icon = this.querySelector('i');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.setAttribute('data-feather', 'eye-off');
+      } else {
+        passwordInput.type = 'password';
+        icon.setAttribute('data-feather', 'eye');
+      }
+      
+      feather.replace();
+    });
+    
+    // Plant hover effect
+    const plants = document.querySelectorAll('.bg-plant');
+    plants.forEach(plant => {
+      plant.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.2)';
+        this.style.opacity = '0.6';
+      });
+      
+      plant.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.opacity = '0.4';
+      });
+    });
+    
+    // Add loading spinner when form is submitted
+    document.getElementById('login-form').addEventListener('submit', function() {
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<div class="spinner"></div>';
+    });
+  </script>
+</body>
+</html> 
