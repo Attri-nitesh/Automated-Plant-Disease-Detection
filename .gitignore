@@ -1,0 +1,9 @@
+venv/
+local/
+.venv*
+.vscode/
+.ipynb_checkpoints/
+uploads/
+static/
+Dataset/
+*.h5
