@@ -3,7 +3,7 @@ local/
 .venv*
 .vscode/
 .ipynb_checkpoints/
-uploads/
-static/
-Dataset/
+# uploads/
+# static/
+# Dataset/
 *.h5
